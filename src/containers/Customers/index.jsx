@@ -29,11 +29,11 @@ const CustomersContainer = props => {
 
   useEffect(() => {
     console.log('CustomersContainer render');
-    const getCustomers = () => {
+    const loadCustomers = () => {
       props.fetchCustomers();
     }
     if (!props.customers.length) {
-      getCustomers();
+      loadCustomers();
     }
   })
 
