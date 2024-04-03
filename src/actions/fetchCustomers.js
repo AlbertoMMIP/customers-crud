@@ -1,4 +1,4 @@
-import apiGet from "../api";
+import { apiGet } from "../api";
 import { urlCustomers } from "../api/urls";
 import { FETCH_CUSTOMERS } from "../constants";
 import { createAction } from 'redux-actions';

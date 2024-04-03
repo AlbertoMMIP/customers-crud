@@ -10,7 +10,7 @@ import { getCustomers } from '../../selectors/customers';
 
 const handleAddNew = (props) => {
   console.log('Add new customer');
-  props.history('/new')
+  props.history('/customers/new')
 }
 
 const renderBody = (customers, props) => (

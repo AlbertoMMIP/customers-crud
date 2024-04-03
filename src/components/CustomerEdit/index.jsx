@@ -35,16 +35,20 @@ const CustomerEdit = ({ name, dni, age, handleSubmit, submitting, onBack }) => {
     </div>  
   );
 
+  const toNumber = value => value && Number(value);
+  const toUpper = value => value && value.toUpperCase();
+  const toLower = value => value && value.toLowerCase();
+
   return (
     <div>
       <h2>Edición del cliente</h2>
       <form onSubmit={handleSubmit}>
-        <Field id="name" name="name" component={MyField} label="Nombre"></Field>
+        <Field id="name" name="name" component={MyField} label="Nombre" format={toLower} parse={toUpper}></Field>
         <Field id="dni" name="dni" component={MyField} validate={isNumber} label="DNI"></Field>
-        <Field id="age" name="age" component={MyField} type="number" validate={isNumber} label="Age"></Field>
+        <Field id="age" name="age" component={MyField} type="number" validate={isNumber} label="Age" parse={toNumber}></Field>
         <CustomerActions>
           <button type="submit" disabled={submitting}>Aceptar</button>
-          <button onClick={onBack}>Cancelar</button>
+          <button type="button" onClick={onBack}>Cancelar</button>
         </CustomerActions>
       </form>
     </div>

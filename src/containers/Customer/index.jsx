@@ -7,6 +7,7 @@ import CustomerEdit from '../../components/CustomerEdit';
 import CustomerData from '../../components/CustomerData';
 import { withRouter } from '../../utils/router.js';
 import { fetchCustomers } from '../../actions/fetchCustomers.js';
+import { updateCustomer } from '../../actions/updateCustomer.js';
 
 const CustomerContainer = props => {
   const params = useParams();
@@ -21,24 +22,28 @@ const CustomerContainer = props => {
     }
   }, [props])
 
-  const handleSubmit = values => console.log('editing . .. ', JSON.stringify(values));
+  const handleSubmit = values => {
+    console.log('editing . .. ', JSON.stringify(values));
+    const { dni: id } = values; 
+    return props.updateCustomer(id, values);
+  }
 
-  const handleOnBack = props => {
+  const handleOnBack = () => {
     console.log('handleOnBack', props)
     const { history } = props;
     history(-1);
   }
 
-  const renderBody = (props) => {
+  const renderBody = () => {
     console.log('customer filter', customer);
         const CustomerControl = match ? CustomerEdit : CustomerData;
-    return <CustomerControl { ...customer } onSubmit={handleSubmit} onBack={() => handleOnBack(props)} />
+    return <CustomerControl { ...customer } onSubmit={handleSubmit} onSubmitSuccess={handleOnBack} onBack={handleOnBack} />
   };
 
   if (customer) {
     return (
       <AppFrame header={`Cliente ${customer.dni}`}
-        body={renderBody(props)} >
+        body={renderBody()} >
       </AppFrame>
     )
   }
@@ -51,4 +56,4 @@ const mapStateToProps = (state, props) => ({
   customers: state.customers,
 });
 
-export default withRouter(connect(mapStateToProps, { fetchCustomers })(CustomerContainer));
+export default withRouter(connect(mapStateToProps, { fetchCustomers, updateCustomer })(CustomerContainer));
