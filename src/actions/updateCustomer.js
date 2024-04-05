@@ -1,6 +1,6 @@
 import { apiPut } from "../api";
 import { urlCustomers } from "../api/urls";
-import { UPDATE_CUSTOMERS } from "../constants";
+import { UPDATE_CUSTOMER } from "../constants";
 import { createAction } from 'redux-actions';
 
-export const updateCustomer = createAction(UPDATE_CUSTOMERS, (id, customer) => apiPut(urlCustomers, id, customer)() );
+export const updateCustomer = createAction(UPDATE_CUSTOMER, (id, customer) => apiPut(urlCustomers, id, customer)() );

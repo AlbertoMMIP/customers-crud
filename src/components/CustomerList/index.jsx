@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CustomerListItem from '../CustomerListItem'
+import { accessControl } from '../../helpers/accessControl.js';
+import { CUSTOMER_LIST } from '../../constants/permissions.js';
 
 const CustomerList = ({ customers, urlPath }) => {
   return (
-    <div>
       <div className="customers-list">
         {
           customers.map(customer => 
@@ -18,7 +19,6 @@ const CustomerList = ({ customers, urlPath }) => {
             </CustomerListItem>)
         }
       </div>
-    </div>
   )
 }
 
@@ -27,4 +27,4 @@ CustomerList.propTypes = {
   urlPath: PropTypes.string.isRequired,
 }
 
-export default CustomerList;
+export default accessControl([CUSTOMER_LIST])(CustomerList);

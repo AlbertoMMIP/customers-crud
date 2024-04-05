@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CustomerActions from '../CustomerActions';
+import { accessControl } from '../../helpers/accessControl.js';
+import { CUSTOMER_VIEW } from '../../constants/permissions.js';
 
-const CustomerData = ({ name, dni, age, onBack }) => {
+const CustomerData = ({ name, dni, age, onBack, isDeleteAllow, onDelete }) => {
   return (
     <div>
       <div className='customer-data'>
@@ -13,6 +15,9 @@ const CustomerData = ({ name, dni, age, onBack }) => {
       </div>
       <CustomerActions>
         <button onClick={onBack}>Volver</button>
+        {
+          isDeleteAllow && <button onClick={() => onDelete(dni)}>Eliminar</button>
+        }
       </CustomerActions>
     </div>
   )
@@ -25,4 +30,4 @@ CustomerData.propTypes = {
   onBack: PropTypes.func.isRequired,
 };
 
-export default CustomerData;
+export default accessControl([CUSTOMER_VIEW])(CustomerData);

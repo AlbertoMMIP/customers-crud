@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { setPropsAsInitial } from '../../helpers/setPropsAsInitial.js';
+import { accessControl } from '../../helpers/accessControl.js';
 import CustomerActions from '../CustomerActions';
+import { CUSTOMER_EDIT } from '../../constants/permissions.js';
 
 const validate  = values => {
     const error = {};
@@ -63,4 +65,4 @@ CustomerEdit.propTypes = {
 
 const CustomerEditForm = reduxForm({ form: 'CustomerEdit', validate, enableReinitialize: true, destroyOnUnmount: false })(CustomerEdit);
 
-export default setPropsAsInitial(CustomerEditForm);
+export default accessControl([CUSTOMER_EDIT])(setPropsAsInitial(CustomerEditForm));

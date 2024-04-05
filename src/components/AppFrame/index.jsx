@@ -10,9 +10,6 @@ const AppFrame = ({ header, body, footer }) => {
         <div className=''>
           {body}
         </div>
-        <div className=''>
-          This will be footer
-        </div>
       </div>
     </div>
   )

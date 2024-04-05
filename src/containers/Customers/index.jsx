@@ -32,7 +32,7 @@ const CustomersContainer = props => {
     const loadCustomers = () => {
       props.fetchCustomers();
     }
-    if (!props.customers.length) {
+    if (props.customers.length === 0) {
       loadCustomers();
     }
   })
